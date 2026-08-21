@@ -125,3 +125,122 @@ cd kaggriculture-ops-lab
 
 # Install dependencies
 pip install -r requirements.txt
+
+📊 Generated Outputs
+Script	Output File	Description
+profit_loss_statement.py	estado_resultados.png	P&L chart with expense breakdown
+profit_by_type.py	profit_by_type.png	Profit by crop/animal type
+cost_center_by_quadrant.py	cost_center_by_quadrant.png	Cost center comparison chart
+labor_analysis.py	labor_analysis.png	Labor metrics (hands vs land, weeds)
+💡 Pro Tips
+1. Identify your player index automatically
+Most scripts detect "RamónLópez" automatically. If you're using a different team name:
+
+bash
+python profit_by_type.py replay.json \"YourTeamName\"
+2. Cost Center Analysis
+The cost center analysis treats each quadrant as a business unit:
+
+Direct costs: seeds, animals (attributed by position)
+
+Indirect costs: labor (prorated by activity)
+
+Revenue: book value (max yield × price at harvest time)
+
+3. Labor Analysis
+The real hiring cost is calculated as a residual (not using the Fibonacci formula) because the game silently rejects excessive HIRE orders.
+
+📋 Command Reference
+Command	Description	Example
+pnl	Full P&L Statement	python main.py pnl replay.json
+profit	Profit by crop/animal	python main.py profit replay.json \"RamonLopez\"
+cost-center	Cost Center Analysis	python main.py cost-center replay.json \"RamonLopez\"
+labor	Labor Analysis	python main.py labor replay.json \"RamonLopez\"
+compare	Compare both players	python main.py compare replay.json
+tempo	Early game tempo	python main.py tempo replay.json \"RamonLopez\" 3
+all	Run all analyses	python main.py all replay.json --output outputs/
+🤝 Contributing
+Contributions are welcome! Here's how you can help:
+
+Areas where help is needed:
+Add support for multi-agent comparison
+
+Implement ML-based strategy recommendations
+
+Create a Streamlit dashboard
+
+Add more visualizations
+
+Translate scripts to other languages
+
+How to contribute:
+Fork the repository
+
+Create a feature branch (git checkout -b feature/amazing-feature)
+
+Commit your changes (git commit -m 'Add some amazing feature')
+
+Push (git push origin feature/amazing-feature)
+
+Open a Pull Request
+
+📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+🙏 Acknowledgments
+Kaggle for hosting the competition
+
+The Kaggriculture competition organizers
+
+All contributors and users of this toolkit
+
+☕ Support the Project
+Kaggriculture Ops Lab is 100% free and open source.
+
+If this toolkit helped you improve your agent and you'd like to support future development:
+
+Platform	Link
+PayPal	paypal.me/lopeznomar
+Binance Pay	36735348
+All contributions are voluntary and greatly appreciated! 🙏
+
+📬 Contact
+Issues: GitHub Issues
+
+Discussions: GitHub Discussions
+
+⭐ Star this repository if you find it useful!
+
+Made with ❤️ for the Kaggriculture community in Venezuela and around the world.
+"@ | Out-File -FilePath README.md -Encoding UTF8
+
+text
+
+---
+
+### Paso 2: Crear `LICENSE`
+
+```powershell
+@"
+MIT License
+
+Copyright (c) 2024 Ramon Lopez
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"@ | Out-File -FilePath LICENSE -Encoding UTF8
