@@ -115,38 +115,96 @@ Analyze each land quadrant as an independent cost center:
 - Land Utilization percentage
 - Production Efficiency (harvest per tile)
 
----
+### 📤 Shareable Reports — Built-in Viral Loop
 
-## 🛠️ Local Scripts vs Web App
+Every report generated in the dashboard now includes a **"Share this report"** card with a pre-written LinkedIn post, ready to copy and publish.
 
-| Feature | Web App | Local Scripts |
-|---------|---------|---------------|
-| P&L Statement | ✅ | ✅ (More detailed) |
-| Profit by Type | ✅ | ✅ |
-| Cost Spike Detection | ✅ | ✅ |
-| **Cost Center Analysis** | ❌ | ✅ |
-| **Labor Efficiency** | ⏳ In Development | ✅ |
-| **Player Comparison** | ❌ | ✅ |
-| **Spike Investigation** | ❌ | ✅ |
-| **Stall Investigation** | ❌ | ✅ |
-| **Monocrop Diagnosis** | ❌ | ✅ |
-| **CSV Export** | ❌ | ✅ |
-| **Offline Usage** | ❌ | ✅ |
+#### What's included in the share card:
 
-**Why use the local scripts?**
-- 🔍 **Deep Diagnostics**: Investigate specific issues (spikes, stalls)
-- 📊 **Cost Center Analysis**: Know exactly which land quadrant is making you money
-- 👷 **Labor ROI**: Measure the real cost and value of hired hands
-- 📁 **Full Data Export**: Generate CSV files for your own analysis
-- 💻 **Offline & Customizable**: Run it anywhere, modify it to fit your needs
+| Element | Description |
+|---------|-------------|
+| **Final cash** | Total net profit for the analyzed period |
+| **Advantage over rival** | Performance comparison against the nearest competitor (or baseline) |
+| **% idle turns** | Percentage of non-productive turns — a key efficiency metric |
+| **Best & worst category** | Top-performing and underperforming cost centers |
+| **Pre-written post** | A ready-to-use LinkedIn post in English, with placeholders for personalization |
+| **Hashtags** | Curated hashtags for maximum reach (#AgTech, #DataDriven, #AgTechInnovation) |
+| **Hook** | "Comment your rank and I'll analyze your replay" — a call-to-action to drive engagement |
+| **Action buttons** | One‑click copy to clipboard, or direct open to LinkedIn with the text pre-filled |
 
----
+#### Why this matters
 
-## 🚀 Quick Start
+This feature transforms every analysis into a **shareable asset**. Instead of downloading a static PDF, users can instantly share their insights with their network, driving:
 
-### Installation
+- 🔁 **Organic growth**: Each shared report acts as a mini‑campaign for your app
+- 🧠 **Community building**: The "comment your rank" hook invites conversation and peer analysis
+- 📈 **Product‑led virality**: Users become your marketing channel
 
-```bash
+#### Technical implementation (outline)
+
+```python
+# Example: Generating the share card payload
+def generate_share_payload(report_data):
+    return {
+        "final_cash": report_data["net_profit"],
+        "advantage": report_data["profit"] - report_data["rival_profit"],
+        "idle_turns_pct": report_data["idle_turns"] / report_data["total_turns"] * 100,
+        "best_category": report_data["best_performer"],
+        "worst_category": report_data["worst_performer"],
+        "linkedin_post": f"""
+📊 Just ran my farm profitability analysis — and here's the breakdown:
+
+💰 Final cash: ${report_data['net_profit']:,}
+📈 Advantage over rival: ${report_data['profit'] - report_data['rival_profit']:,}
+⏱️ Idle turns: {report_data['idle_turns'] / report_data['total_turns'] * 100:.1f}%
+🏆 Best: {report_data['best_performer']}
+📉 Worst: {report_data['worst_performer']}
+
+Built with @lovable_dev after winning a Pro license in a @Platzi competition.
+
+👉 Try it yourself: [YOUR_APP_LINK]
+
+Comment your rank and I'll analyze your replay! 👇
+
+#AgTech #DataDriven #AgTechInnovation
+""",
+        "hashtags": ["#AgTech", "#DataDriven", "#AgTechInnovation"],
+        "hook": "Comment your rank and I'll analyze your replay! 👇"
+    }
+🔮 Next step: Open Graph Cards
+The natural evolution is to generate per‑report Open Graph (OG) cards, so every shared link has its own rich preview when posted on social media — showing the key metrics directly in the feed.
+
+¿La armamos? 👀
+
+🛠️ Local Scripts vs Web App
+Feature	Web App	Local Scripts
+P&L Statement	✅	✅ (More detailed)
+Profit by Type	✅	✅
+Cost Spike Detection	✅	✅
+Shareable Reports	✅	❌
+Cost Center Analysis	❌	✅
+Labor Efficiency	⏳ In Development	✅
+Player Comparison	❌	✅
+Spike Investigation	❌	✅
+Stall Investigation	❌	✅
+Monocrop Diagnosis	❌	✅
+CSV Export	❌	✅
+Offline Usage	❌	✅
+Why use the local scripts?
+
+🔍 Deep Diagnostics: Investigate specific issues (spikes, stalls)
+
+📊 Cost Center Analysis: Know exactly which land quadrant is making you money
+
+👷 Labor ROI: Measure the real cost and value of hired hands
+
+📁 Full Data Export: Generate CSV files for your own analysis
+
+💻 Offline & Customizable: Run it anywhere, modify it to fit your needs
+
+🚀 Quick Start
+Installation
+bash
 # Clone the repository
 git clone https://github.com/lopeznomar/kaggriculture-ops-lab.git
 cd kaggriculture-ops-lab
@@ -258,6 +316,7 @@ all	Run all analyses	python main.py all replay.json --output outputs/
 Contributions are welcome! Here's how you can help:
 
 Areas where help is needed:
+
 Add support for multi-agent comparison
 
 Implement ML-based strategy recommendations
@@ -269,6 +328,7 @@ Add more visualizations
 Translate scripts to other languages
 
 How to contribute:
+
 Fork the repository
 
 Create a feature branch (git checkout -b feature/amazing-feature)
@@ -288,6 +348,10 @@ Kaggle for hosting the competition
 The Kaggriculture competition organizers
 
 All contributors and users of this toolkit
+
+Platzi for the education and competition opportunity
+
+Lovable for the Pro license that made the web app possible
 
 ☕ Support the Project
 Kaggriculture Ops Lab is 100% free and open source.
@@ -312,4 +376,3 @@ All tools, scripts, and analyses are provided "as is" for educational and compet
 ⭐ Star this repository if you find it useful!
 
 Made with ❤️ for the Kaggriculture community in Venezuela and around the world.
-
