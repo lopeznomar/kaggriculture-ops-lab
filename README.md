@@ -1,4 +1,3 @@
-@"
 # 🌾 Kaggriculture Ops Lab
 
 [![Kaggle](https://img.shields.io/badge/Kaggle-Kaggriculture-blue)](https://www.kaggle.com/competitions/kaggriculture)
@@ -16,7 +15,18 @@ Upload replay JSON files to generate P&L reports, production insights, cost diag
 
 **Get instant insights without installing anything!**
 
-Our web app is available in **English**, **中文 (Mandarin)**, and **日本語 (Japanese)**:
+Our web app is available in **8 languages**:
+
+| Language | Flag |
+|----------|------|
+| English | 🇬🇧🇺🇸 |
+| 中文 (Mandarin) | 🇨🇳 |
+| 日本語 (Japanese) | 🇯🇵 |
+| हिन्दी (Hindi) | 🇮🇳 |
+| Español (Spanish) | 🇪🇸 |
+| Русский (Russian) | 🇷🇺 |
+| Português (Portuguese) | 🇵🇹 |
+| 한국어 (Korean) | 🇰🇷 |
 
 👉 **[kaggriculture-ops-lab.lovable.app](https://kaggriculture-ops-lab.lovable.app)**
 
@@ -37,6 +47,24 @@ Our web app is available in **English**, **中文 (Mandarin)**, and **日本語 
 - 🎯 **Market timing recommendations** based on price elasticity
 - 🧪 **Strategy optimization** comparing ROI across crops and animals
 - 🔍 **Diagnostic tools** for spike detection, stall analysis, and monocrop diagnosis
+
+---
+
+## 💼 Business Model (How It Works)
+
+**Kaggriculture Ops Lab is 100% free and open source.** There is no paywall, no subscription, and no hidden fees.
+
+However, this project is maintained by a single developer. If the toolkit helps you improve your agent, you can support future development through:
+
+| Method | Link / ID | What it supports |
+|--------|-----------|------------------|
+| **PayPal** | [paypal.me/lopeznomar](https://paypal.me/lopeznomar) | Server costs, development time |
+| **Binance Pay** | 36735348 | Infrastructure and maintenance |
+| **GitHub Sponsors** | Coming soon | Long-term sustainability |
+
+**Why is this important?**
+
+This is not a commercial product — it's a community-driven project. Your support helps keep it alive and evolving.
 
 ---
 
@@ -125,7 +153,65 @@ cd kaggriculture-ops-lab
 
 # Install dependencies
 pip install -r requirements.txt
+Using the Unified Script (Recommended)
+bash
+# List all available commands
+python main.py --list
 
+# Full analysis (all reports)
+python main.py all replay.json --output outputs/
+
+# P&L Statement only
+python main.py pnl replay.json "RamónLópez"
+
+# Cost Center Analysis
+python main.py cost-center replay.json "RamónLópez"
+
+# Labor Analysis
+python main.py labor replay.json "RamónLópez"
+
+# Compare both players
+python main.py compare replay.json
+
+# Early game tempo (first 3 days)
+python main.py tempo replay.json "RamónLópez" 3
+
+# Investigate a money spike
+python main.py spike replay.json "RamónLópez"
+
+# Investigate stalling
+python main.py stall replay.json "RamónLópez"
+
+# Diagnose monocrop
+python main.py monocrop replay.json
+Using Individual Scripts
+bash
+# Full P&L Statement
+python profit_loss_statement.py replay.json
+
+# Profit by type (crops vs animals)
+python profit_by_type.py replay.json "RamónLópez"
+
+# Cost Center Analysis per quadrant
+python cost_center_by_quadrant.py replay.json "RamónLópez"
+
+# Labor analysis (hiring costs, land-to-labor ratio)
+python labor_analysis.py replay.json "RamónLópez"
+
+# Compare both players side-by-side
+python compare_both_players.py replay.json
+
+# Early game tempo (turn by turn)
+python compare_early_game_tempo.py replay.json 3
+
+# Investigate a money spike
+python investigate_spike.py replay.json "RamónLópez" 20 25
+
+# Check if your agent is stalling
+python investigate_stall.py replay.json "RamónLópez" 1 3
+
+# Diagnose monocrop
+python diagnose_monocrop.py replay.json 20 25
 📊 Generated Outputs
 Script	Output File	Description
 profit_loss_statement.py	estado_resultados.png	P&L chart with expense breakdown
@@ -134,10 +220,10 @@ cost_center_by_quadrant.py	cost_center_by_quadrant.png	Cost center comparison ch
 labor_analysis.py	labor_analysis.png	Labor metrics (hands vs land, weeds)
 💡 Pro Tips
 1. Identify your player index automatically
-Most scripts detect "RamónLópez" automatically. If you're using a different team name:
+Most scripts detect "RamónLópez" automatically (with or without accents). If you're using a different team name:
 
 bash
-python profit_by_type.py replay.json \"YourTeamName\"
+python profit_by_type.py replay.json "YourTeamName"
 2. Cost Center Analysis
 The cost center analysis treats each quadrant as a business unit:
 
@@ -148,16 +234,25 @@ Indirect costs: labor (prorated by activity)
 Revenue: book value (max yield × price at harvest time)
 
 3. Labor Analysis
-The real hiring cost is calculated as a residual (not using the Fibonacci formula) because the game silently rejects excessive HIRE orders.
+The real hiring cost is calculated as a residual (not using the Fibonacci formula) because the game silently rejects excessive HIRE orders. This method ensures the P&L always matches the actual money.
+
+4. Spanish vs English Scripts
+The project includes scripts in both Spanish (analizar_*.py) and English. The unified main.py handles both seamlessly.
+
+5. Auto-detection of Player Index
+All scripts automatically detect your player index using the team name from the replay file. This solves the issue where your player index (0 or 1) changes between games.
 
 📋 Command Reference
 Command	Description	Example
 pnl	Full P&L Statement	python main.py pnl replay.json
-profit	Profit by crop/animal	python main.py profit replay.json \"RamonLopez\"
-cost-center	Cost Center Analysis	python main.py cost-center replay.json \"RamonLopez\"
-labor	Labor Analysis	python main.py labor replay.json \"RamonLopez\"
+profit	Profit by crop/animal	python main.py profit replay.json "RamonLopez"
+cost-center	Cost Center Analysis	python main.py cost-center replay.json "RamonLopez"
+labor	Labor Analysis	python main.py labor replay.json "RamonLopez"
 compare	Compare both players	python main.py compare replay.json
-tempo	Early game tempo	python main.py tempo replay.json \"RamonLopez\" 3
+tempo	Early game tempo	python main.py tempo replay.json "RamonLopez" 3
+spike	Investigate money spike	python main.py spike replay.json "RamonLopez"
+stall	Investigate stall	python main.py stall replay.json "RamonLopez"
+monocrop	Diagnose monocrop	python main.py monocrop replay.json
 all	Run all analyses	python main.py all replay.json --output outputs/
 🤝 Contributing
 Contributions are welcome! Here's how you can help:
@@ -199,7 +294,7 @@ Kaggriculture Ops Lab is 100% free and open source.
 
 If this toolkit helped you improve your agent and you'd like to support future development:
 
-Platform	Link
+Platform	Link / ID
 PayPal	paypal.me/lopeznomar
 Binance Pay	36735348
 All contributions are voluntary and greatly appreciated! 🙏
@@ -209,38 +304,12 @@ Issues: GitHub Issues
 
 Discussions: GitHub Discussions
 
+⚖️ Legal & Disclaimer
+Kaggriculture Ops Lab is an independent open-source project. It is not affiliated with, endorsed by, or sponsored by Kaggle or any of its partners.
+
+All tools, scripts, and analyses are provided "as is" for educational and competitive purposes. Use them at your own risk.
+
 ⭐ Star this repository if you find it useful!
 
 Made with ❤️ for the Kaggriculture community in Venezuela and around the world.
-"@ | Out-File -FilePath README.md -Encoding UTF8
 
-text
-
----
-
-### Paso 2: Crear `LICENSE`
-
-```powershell
-@"
-MIT License
-
-Copyright (c) 2024 Ramon Lopez
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-"@ | Out-File -FilePath LICENSE -Encoding UTF8
